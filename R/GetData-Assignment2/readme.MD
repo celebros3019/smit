@@ -1,15 +1,14 @@
-###This code takes the activity-tracking dataset provided from Samsung in the Getting and Cleaning Data course
-###and identifies the mean for each of 33 measures, for each of 30 subjects, for each of 6 activities.
+###This code takes the activity-tracking dataset provided from Samsung in the Getting and Cleaning Data course and identifies the mean for each of 33 measures, for each of 30 subjects, for each of 6 activities.
 
 _Start with the zipped folder in your home directory._
 _This uses readr, tidyr, and dplyr packages, and all their dependencies._
 _The file can be run as one, with an output of the txt file that I submitted for part one, or can be run in two sets: one to create the first bit (until final_data has been created) and the second half of the code to create the tidied data set._
 
 
-Instructions:
+####Instructions:
   
   
-  * We start out by unzipping the zipfile.
+* We start out by unzipping the zipfile.
 
 * We load readr and tidyr packages
 
