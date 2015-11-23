@@ -13,8 +13,8 @@ read_table("test/y_test.txt", col_names = F) -> test_labels
 read_table("train/subject_train.txt", col_names = F) -> subject_train
 read_table("test/subject_test.txt", col_names = F) -> subject_test
 
-colnames(test_set) <- features[,1]
-colnames(training_set) <- features[,1]
+colnames(test_set) <- features[[1]]
+colnames(training_set) <- features[[1]]
 
 rbind(test_set,training_set) -> set
 rbind(subject_test,subject_train) -> subjects
@@ -25,7 +25,7 @@ colnames(labels) <- c("activity")
 cbind(subjects,labels,set) -> data1
 
 require(dplyr)
-tbl_df(data1) -> dataset
+data1 -> dataset
 
 select(dataset, c(1:2)) -> subject_activity
 select(dataset, contains ("-mean()")) -> mean
@@ -43,34 +43,15 @@ dataset2[,2][which(dataset2[,2] == 6)] <- "Lay_Down"
 final_data <- dataset2
 
 
-rm(activity_labels)
-rm(data1)
-rm(dataset)
-rm(dataset2)
-rm(features)
-rm(features_info)
-rm(labels)
-rm(mean)
-rm(set)
-rm(stdev)
-rm(subject_activity)
-rm(subject_test)
-rm(subject_train)
-rm(subjects)
-rm(test_labels)
-rm(test_set)
-rm(training_labels)
-rm(training_set)
 
-
-
+mutate(final_data, variable = paste(final_data[,1], final_data[,2], sep = "; ")) -> final_data
 
 
 set <- NULL
 for (i in unique(final_data$variable)) {
   mm <- final_data[which(final_data$variable == i),]
   mm2 <- colMeans(mm[3:68])
-  set <- rbind(mt,mm2)}
+  set <- rbind(set,mm2)}
 
 toset <- cbind(unique(final_data$variable), unique(set))
 as.vector(toset[,1])
@@ -81,7 +62,7 @@ rownames(toset) <- NULL
 asdf <- as.integer(labels)
 subject <- labels[which(complete.cases(asdf) == T)]
 activity <- labels[which(complete.cases(asdf) == F)]
-cbind(subject, activity,sets) -> data
+cbind(subject, activity,set) -> data
 rownames(data) <- NULL
 as.data.frame(data) -> data
 write.table(data, "~/data.txt", row.name = F)
