@@ -1,8 +1,24 @@
-###This code takes the activity-tracking dataset provided from Samsung in the Getting and Cleaning Data course
-###and identifies the mean for each of 33 measures, for each of 30 subjects, for each of 6 activities.
+###This code takes the activity-tracking dataset provided from Samsung in the Getting and Cleaning Data course and identifies the mean for each of 33 measures, for each of 30 subjects, for each of 6 activities.
 
 
-Order:
+
+####Dictionary:
+
+* data1 is a preliminary dataset with the bound subjects, labels, and datasets
+* dataset is a more finalized version of data1
+
+* subject_activity is a subselected table of dataset, containing just the subject and label information
+* mean contains all the columns that identified means of a particular measure
+* stdev contains all the columns that identified standard deviations of a particular measure
+* dataset2 is the set the contains the information we actually want, excluding all the columns we aren't using
+* final_data is the finalized version of dataset2, with the activities renamed
+
+* set contains the means for each measure for each subject and activity pair
+* toset is the unique version of set, eliminating duplicates
+* data is the final data set to be written
+
+
+####Order:
   
 * We start out by unzipping the zipfile.
 * We load readr and tidyr packages
@@ -28,23 +44,3 @@ Order:
 * Vectorize that index and split it back into its individual parts, setting them as subject and activity
 * Bind those back to the set
 * Translate it back into a data frame and write it to a txt file
-
-
-
-
-
-
-###Dictionary:
-
-* data1 is a preliminary dataset with the bound subjects, labels, and datasets
-* dataset is a more finalized version of data1
-
-* subject_activity is a subselected table of dataset, containing just the subject and label information
-* mean contains all the columns that identified means of a particular measure
-* stdev contains all the columns that identified standard deviations of a particular measure
-* dataset2 is the set the contains the information we actually want, excluding all the columns we aren't using
-* final_data is the finalized version of dataset2, with the activities renamed
-
-* set contains the means for each measure for each subject and activity pair
-* toset is the unique version of set, eliminating duplicates
-* data is the final data set to be written
